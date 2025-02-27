@@ -41,6 +41,8 @@ const SquishFileInput: FC<SquishFileInputProps> = (props) => {
         <Input
           ref={fileInputRef}
           onChange={handleSubmit}
+          onSelect={handleSubmit}
+          onSubmit={handleSubmit}
           multiple
           name="squish"
           type="file"

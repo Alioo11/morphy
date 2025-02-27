@@ -8,7 +8,7 @@ export default function Layout({ children }: { children: ReactNode }) {
       </nav>
 
       <div className="w-full flex justify-center">
-        <main className="pt-[60px] max-w-[700px]">{children}</main>
+        <main className="pt-[60px] h-[calc(100vh - 60px)] max-w-[700px]">{children}</main>
       </div>
 
       <footer className="fixed w-full bottom-0 text-sm text-gray-500 h-[20px] flex justify-center">
