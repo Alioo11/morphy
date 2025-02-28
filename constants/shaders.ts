@@ -12,6 +12,11 @@ export const fragmentShader = /* glsl */ `
   uniform sampler2D uTexture_1;
   uniform vec2 uResolution;
   uniform float uRadius;
+
+  uniform float uRedThreshold;
+  uniform float uGreenThreshold;
+  uniform float uBlueThreshold;
+
   varying vec2 vUv;
 
   const float STEP_SIZE = 20.0;
@@ -76,14 +81,36 @@ vec4 calculateGaussianBlur_1() {
     vec4 color = (color_0 + color_1) / 1.0;
 
 
-    float lightValue = (color.r + color.g + color.b + color.a) / 4.0;
 
-    if(lightValue > 0.7){
-       lightValue = 1.0;
-    }else {
-      lightValue = 0.0;
+
+    if(color.r > uRedThreshold){
+      color.r = 1.0;
+    }else{
+      color.r = 0.0;
     }
 
-    gl_FragColor = vec4(lightValue , lightValue , lightValue , 1.0);
+
+    if(color.g > uGreenThreshold){
+      color.g = 1.0;
+    }else{
+      color.g = 0.0;
+    }
+
+
+    if(color.b > uBlueThreshold){
+      color.b = 1.0;
+    }else{
+      color.b = 0.0;
+    }
+
+    
+    gl_FragColor = color;
   }
-`;
+  `;
+  
+  // if(lightValue > 0.7){
+  //    lightValue = 1.0;
+  // }else {
+  //   lightValue = 0.0;
+  // }
+  // gl_FragColor = vec4(lightValue , lightValue , lightValue , 1.0);
