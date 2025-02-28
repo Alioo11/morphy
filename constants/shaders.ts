@@ -83,6 +83,6 @@ vec4 calculateGaussianBlur_1() {
       lightValue = 0.0;
     }
 
-    gl_FragColor = vec4(lightValue);
+    gl_FragColor = vec4(lightValue , lightValue , lightValue , 1.0);
   }
 `;
