@@ -78,7 +78,7 @@ vec4 calculateGaussianBlur_1() {
 
     float lightValue = (color.r + color.g + color.b + color.a) / 4.0;
 
-    if(lightValue > 0.5){
+    if(lightValue > 0.7){
        lightValue = 1.0;
     }else {
       lightValue = 0.0;
