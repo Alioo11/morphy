@@ -20,12 +20,13 @@ export const fragmentShader = /* glsl */ `
   vec4 calculateGaussianBlur_0() {
     
     if (uRadius == 0.0) return texture2D(uTexture_0, vUv);
+    float r = uRadius / 2.0;
 
     vec4 color = vec4(0.0);
     float totalWeight = 0.0;
 
-    for (float i = -uRadius; i <= uRadius; i++) {
-        for (float j = -uRadius; j <= uRadius; j++) {
+    for (float i = -r; i <= r; i++) {
+        for (float j = -r; j <= r; j++) {
             vec2 sampleOffset = vec2(i, j) / uResolution; // Convert to vUv space
             vec4 sampleColor = texture2D(uTexture_0, vUv + sampleOffset);
             float weight = 1.0; // Box blur has uniform weights
@@ -43,7 +44,7 @@ vec4 calculateGaussianBlur_1() {
     
   if (uRadius == STEP_SIZE) return texture2D(uTexture_1, vUv);
 
-  float rad = STEP_SIZE - uRadius;
+  float rad = (STEP_SIZE - uRadius) - 2.0;
 
   vec4 color = vec4(0.0);
   float totalWeight = 0.0;
